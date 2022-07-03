@@ -14,9 +14,9 @@ class CountryController extends Controller
         $this->countryService = new CountryService();
     }
 
-    public function syncCountriesToDataBase()
+    public function syncAllCountriesToDatabase()
     {
-        $this->countryService->syncCountriesToDataBase();
+        return $this->countryService->syncCountriesToDataBase();
     }
 
     public function getAllCountries()
@@ -24,8 +24,8 @@ class CountryController extends Controller
         return $this->countryService->getAllCountries();
     }
 
-    public function getAllCountriesPaging($perPage, $currentPage)
+    public function getAllCountriesPaging($perPage, $page)
     {
-        return $this->countryService->getPagedCountries($perPage, $currentPage);
+        return $this->countryService->getCountriesPaging($perPage, $page);
     }
 }

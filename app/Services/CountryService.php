@@ -19,11 +19,11 @@ class CountryService
         $countries = Http::get('https://countriesnow.space/api/v0.1/countries/population')->json();
         foreach ($countries as $country) {
             if (isset($country['code'])) {
-                $updatedCountry = $this->country->createOrUpdate($country['code'], $country['country']);
+                $updatedCountry = $this->countryRepository->createOrUpdate($country['code'], $country['country']);
             }
         }
         return response([
-            'message' => 'Countries have been created/updated'
+            'done' => 'Countries have been created/updated'
         ], 200);
     }
 
@@ -33,9 +33,9 @@ class CountryService
         return response($countries, 200);
     }
 
-    public function getPagedCountries($perPage, $currentPage)
+    public function getCountriesPaging($perPage, $page)
     {
-        $countries = $this->country->getCountriesPaging($perPage, $currentPage);
+        $countries = $this->countryRepository->getCountriesPaging($perPage, $page);
         return response($countries, 200);
     }
 }
