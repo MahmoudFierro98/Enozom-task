@@ -23,10 +23,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 /* Country */
 Route::get('sync-countries',[CountryController::class,'syncAllCountriesToDatabase']);
 Route::get('countries',[CountryController::class,'getAllCountries']);
-Route::get('countries/{page}',[CountryController::class,'getAllCountriesPaging']);
+Route::get('countries/{pageSize}/{page}',[CountryController::class,'getAllCountriesPaging']);
 
 /* Population */
-Route::get('populations/',[PopulationController::class,'syncCountriesToDataBase']);
+Route::get('populations/',[PopulationController::class,'syncPopulationsToDataBase']);
 Route::get('populations/{id}',[PopulationController::class,'getPopulationOfCountry']);
 Route::get('populations-max',[PopulationController::class,'getCountryWithMaxPopulationLastYear']);
 Route::get('populations-min',[PopulationController::class,'getCountryWithMinPopulationLastYear']);

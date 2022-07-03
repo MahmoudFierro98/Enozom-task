@@ -16,8 +16,8 @@ class PopulationController extends Controller
         $this->PopulationService = new PopulationService();
     }
 
-    public function syncCountriesToDataBase(){
-        return $this->PopulationService->syncCountriesToDataBase();
+    public function syncPopulationsToDataBase(){
+        return $this->PopulationService->syncPopulationsToDataBase();
     }
 
     public function getPopulationOfCountry($countryId){

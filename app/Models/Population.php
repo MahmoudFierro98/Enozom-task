@@ -9,6 +9,15 @@ class Population extends Model
 {
     use HasFactory;
 
+    public function format()
+    {
+        return [
+            'code' => $this->code,
+            'year' => $this->year,
+            'value' => $this->value,
+            'country' => $this->country->country_name,
+        ];
+    }
     protected $fillable = [
         'id',
         'code',

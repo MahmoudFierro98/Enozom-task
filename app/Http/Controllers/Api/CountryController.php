@@ -24,8 +24,8 @@ class CountryController extends Controller
         return $this->countryService->getAllCountries();
     }
 
-    public function getAllCountriesPaging($page)
+    public function getAllCountriesPaging($pageSize, $page)
     {
-        return $this->countryService->getCountriesPaging($page);
+        return $this->countryService->getCountriesPaging($pageSize, $page);
     }
 }

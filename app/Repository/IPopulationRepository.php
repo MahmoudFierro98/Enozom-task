@@ -11,4 +11,8 @@ interface IPopulationRepository
     public function getCountryWithMaxPopulationLastYear();
 
     public function getCountryWithMinPopulationLastYear();
+
+    public function getMaxPopulationLastYear();
+
+    public function getMinPopulationLastYear();
 }

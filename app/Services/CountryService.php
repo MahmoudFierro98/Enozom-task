@@ -33,9 +33,9 @@ class CountryService
         return response($countries, 200);
     }
 
-    public function getCountriesPaging($page)
+    public function getCountriesPaging($pageSize, $page)
     {
-        $countries = $this->countryRepository->getCountriesPaging($page);
+        $countries = $this->countryRepository->getCountriesPaging($pageSize, $page);
         return response($countries, 200);
     }
 }
