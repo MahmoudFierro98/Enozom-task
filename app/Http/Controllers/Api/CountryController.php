@@ -1,52 +1,31 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Country;
+use App\Services\CountryService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 
 class CountryController extends Controller
 {
-    public function syncAllCountriesToDatabase()
+    private CountryService $countryService;
+    public function __construct()
     {
-        $countries = Http::get('https://countriesnow.space/api/v0.1/countries/population')->json()['data'];
-        foreach ($countries as $country) {
-            if (isset($country['code'])) {
-                $updatedCountry = Country::updateOrCreate(
-                    ['country_code' => $country['code']],
-                    ['country_code' => $country['code'], 'country_name' => $country['country']],
-                );
-            }
-        }
-        return response([
-            $countries
-        ], 200);
+        $this->countryService = new CountryService();
     }
 
-    public function index()
+    public function syncCountriesToDataBase()
     {
-        return response()->json(Country::all());
+        $this->countryService->syncCountriesToDataBase();
     }
 
-    public function store(Request $request)
+    public function getAllCountries()
     {
-        //
+        return $this->countryService->getAllCountries();
     }
 
-    public function show($id)
+    public function getAllCountriesPaging($perPage, $currentPage)
     {
-        //
-    }
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-    
-    public function destroy($id)
-    {
-        //
+        return $this->countryService->getPagedCountries($perPage, $currentPage);
     }
 }

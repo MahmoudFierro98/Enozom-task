@@ -21,3 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 /* Country */
 Route::get('sync-countries',[CountryController::class,'syncAllCountriesToDatabase']);
+Route::get('countries',[CountryController::class,'getAllCountries']);
+Route::get('countries/{perPage}/{currentPage}',[CountryController::class,'getAllCountries']);
