@@ -6,7 +6,7 @@ interface ICountryRepository
 {
     public function getAllCountries();
     
-    public function getCountriesPaging($perPage, $page);
+    public function getCountriesPaging($pageSize, $page);
 
     public function createOrUpdate($id = null, $name);
 
