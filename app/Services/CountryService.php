@@ -16,7 +16,6 @@ class CountryService
 
     public function syncCountriesToDataBase()
     {
-        // $countries = Http::get('https://countriesnow.space/api/v0.1/countries/population')->json()['data'];
         $countries = Http::get($_ENV['API_COUNTRIES'])->json()['data'];
         foreach ($countries as $country) {
             if (isset($country['code'])) {
