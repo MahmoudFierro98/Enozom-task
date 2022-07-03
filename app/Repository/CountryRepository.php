@@ -13,9 +13,9 @@ class CountryRepository implements ICountryRepository
         return Country::all();
     }
 
-    public function getCountriesPaging($pageSize, $page)
+    public function getCountriesPaging($page)
     {
-        return Country::paginate($pageSize, ['*'], 'page', $page);
+        return Country::paginate(50, ['*'], 'page', $page);
     }
 
     public function createOrUpdate($id = null, $name)
