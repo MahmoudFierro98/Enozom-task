@@ -15,6 +15,8 @@ class CountryRepository implements ICountryRepository
 
     public function getCountriesPaging($pageSize, $page)
     {
+        if ($page <= 0)
+            return[];
         return Country::skip($pageSize * ($page - 1))->take($pageSize)->get();
     }
 
