@@ -18,53 +18,26 @@ class PopulationService
         $this->countryRepository = new CountryRepository();
     }
 
-    // public function getAllPopulations($countryId)
-    // {
-    //     $country = $this->countryRepository->getCountry($countryId);
-    //     // $Populations = Http::get($_ENV['API_COUNTRIES'])->json()['data'][$country['country_code']];
-    //     $allPopulations = Http::get($_ENV['API_COUNTRIES'])->json()['data'];
-    //     foreach ($allPopulations as $population) {
-    //         if ($population['code'] == $country['country_code']) {
-    //             $populations = $population;
-    //         }
-    //     }
-    //     return $populations;
-    // }
-
-    // public function syncPopulationsToDataBase()
-    // {
-    //     $countries = $this->countryRepository->getAllCountries();
-    //     foreach ($countries as $country) {
-    //         $Population = $this->getAllPopulations($country->id);
-    //         if (isset($Population['populationCounts'])) {
-    //             foreach ($Population['populationCounts'] as $populationCount) {
-    //                 $updatedPopulation = $this->populationRepository->createOrUpdate($Population['code'], $populationCount['year'], $populationCount['value'], $country['id']);
-    //             }
-    //         }
-    //     }
-    //     return response([
-    //         'done' => 'Populations has been created/updated',
-    //     ], 200);
-    // }
-
-
     public function syncPopulationsToDataBase()
     {
-        $countries = $this->countryRepository->getAllCountries();
-        $allPopulations = Http::get($_ENV['API_COUNTRIES'])->json()['data'];
-        foreach ($countries as $country) {
-            foreach ($allPopulations as $population) {
-                if ($population['code'] == $country['country_code'] && isset($population['populationCounts'])) {
-                    foreach ($population['populationCounts'] as $populationCount) {
-                        $updatedPopulation = $this->populationRepository->createOrUpdate($population['code'], $populationCount['year'], $populationCount['value'], $country['id']);
-                    }
+        $populations = Http::get($_ENV['API_COUNTRIES'])->json()['data'];
+        foreach ($populations as $population) {
+            if (isset($population['populationCounts'])) {
+                foreach ($population['populationCounts'] as $populationCount) {
+                    $updatedPopulation = $this->populationRepository->createOrUpdate(
+                        $population['code'],
+                        $populationCount['year'],
+                        $populationCount['value'],
+                        $this->countryRepository->getCountry($population['code'])->id
+                    );
                 }
             }
         }
         return response([
-            'done' => 'Populations has been created/updated',
+            'done' => 'Populations have been created/updated'
         ], 200);
     }
+
     public function getPopulationOfCountry($countryId)
     {
         $population = $this->populationRepository->getPopulation($countryId);

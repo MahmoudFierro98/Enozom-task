@@ -10,5 +10,5 @@ interface ICountryRepository
 
     public function createOrUpdate($code = null, $name);
 
-    public function getCountry($id = null);
+    public function getCountry($country_code = null);
 }

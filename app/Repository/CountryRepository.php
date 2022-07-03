@@ -15,7 +15,7 @@ class CountryRepository implements ICountryRepository
 
     public function getCountriesPaging($pageSize, $page)
     {
-        return Country::paginate($pageSize, ['*'], 'page', $page);
+        return Country::skip($pageSize * ($page - 1))->take($pageSize)->get();
     }
 
     public function createOrUpdate($code = null, $name)
@@ -26,8 +26,8 @@ class CountryRepository implements ICountryRepository
         ));
     }
 
-    public function getCountry($id = null)
+    public function getCountry($country_code = null)
     {
-        return Country::where('id', $id)->get()->first();;
+        return Country::where('country_code', $country_code)->get()->first();;
     }
 }
