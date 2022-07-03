@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('populations', function (Blueprint $table) {
             $table->id();
+            $table->string('year');
+            $table->string('value');
+            $table->foreignId("country_id")->constrained()->onDelete("cascade")->onUpdate("cascade");
             $table->timestamps();
         });
     }
