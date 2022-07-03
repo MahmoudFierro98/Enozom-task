@@ -8,7 +8,7 @@ interface ICountryRepository
     
     public function getCountriesPaging($page);
 
-    public function createOrUpdate($id = null, $name);
+    public function createOrUpdate($code = null, $name);
 
     public function getCountry($id = null);
 }

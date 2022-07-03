@@ -18,11 +18,11 @@ class CountryRepository implements ICountryRepository
         return Country::paginate(50, ['*'], 'page', $page);
     }
 
-    public function createOrUpdate($id = null, $name)
+    public function createOrUpdate($code = null, $name)
     {
         return (Country::updateOrCreate(
-            ['country_code' => $id],
-            ['country_code' => $id, 'country_name' => $name],
+            ['country_code' => $code],
+            ['country_code' => $code, 'country_name' => $name],
         ));
     }
 

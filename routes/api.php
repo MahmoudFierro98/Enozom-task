@@ -25,5 +25,6 @@ Route::get('sync-countries',[CountryController::class,'syncAllCountriesToDatabas
 Route::get('countries',[CountryController::class,'getAllCountries']);
 Route::get('countries/{page}',[CountryController::class,'getAllCountriesPaging']);
 
-
-Route::get('populations/',[PopulationController::class,'syncPopulations']);
+/* Population */
+Route::get('populations/',[PopulationController::class,'syncCountriesToDataBase']);
+Route::get('populations/{id}',[PopulationController::class,'getPopulationOfCountry']);
