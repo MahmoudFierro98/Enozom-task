@@ -28,3 +28,5 @@ Route::get('countries/{page}',[CountryController::class,'getAllCountriesPaging']
 /* Population */
 Route::get('populations/',[PopulationController::class,'syncCountriesToDataBase']);
 Route::get('populations/{id}',[PopulationController::class,'getPopulationOfCountry']);
+Route::get('populations-max',[PopulationController::class,'getCountryWithMaxPopulationLastYear']);
+Route::get('populations-min',[PopulationController::class,'getCountryWithMinPopulationLastYear']);

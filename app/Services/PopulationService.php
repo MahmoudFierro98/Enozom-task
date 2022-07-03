@@ -41,4 +41,21 @@ class PopulationService
         $population = $this->populationRepository->getPopulation($countryId);
         return $population;
     }
+
+    public function getCountryWithMaxPopulation()
+    {
+        $country = $this->populationRepository->getCountryWithMaxPopulationLastYear();
+        return response([
+            $country,
+        ], 200);
+    }
+
+    public function getCountryWithMinPopulation()
+    {
+        $country = $this->populationRepository->getCountryWithMinPopulationLastYear();
+        return response([
+            $country,
+        ], 200);
+    }
+
 }

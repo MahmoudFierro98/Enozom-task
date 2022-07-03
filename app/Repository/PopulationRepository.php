@@ -20,4 +20,14 @@ class PopulationRepository implements IPopulationRepository
     {
         return Population::where('country_id', $id)->get();
     }
+
+    public function getCountryWithMaxPopulationLastYear()
+    {
+        return Population::orderBy('year', 'desc')->orderBy('value', 'desc')->first()->country;;
+    }
+    
+    public function getCountryWithMinPopulationLastYear()
+    {
+        return Population::orderBy('year', 'desc')->orderBy('value', 'asc')->first()->country;;
+    }
 }
