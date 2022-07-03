@@ -58,4 +58,14 @@ class PopulationService
         ], 200);
     }
 
+    public function getCountriesWithMinAndMaxPopulations()
+    {
+        $min = $this->populationRepository->getCountryWithMinPopulationLastYear();
+        $max = $this->populationRepository->getCountryWithMaxPopulationLastYear();
+        return response([
+            'max'=> $max,
+            'min'=> $min,
+        ], 200);
+    }
+
 }

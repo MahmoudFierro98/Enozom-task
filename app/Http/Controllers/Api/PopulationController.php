@@ -31,4 +31,8 @@ class PopulationController extends Controller
     public function getCountryWithMinPopulationLastYear(){
         return $this->PopulationService->getCountryWithMinPopulation();
     }
+
+    public function getCountryWithMinAndMaxPopulationLastYear(){
+        return $this->PopulationService->getCountriesWithMinAndMaxPopulations();
+    }
 }
