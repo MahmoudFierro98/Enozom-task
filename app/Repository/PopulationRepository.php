@@ -23,11 +23,11 @@ class PopulationRepository implements IPopulationRepository
 
     public function getCountryWithMaxPopulationLastYear()
     {
-        return Population::orderBy('year', 'desc')->orderBy('value', 'desc')->first()->country;;
+        return Population::orderBy('year', 'desc')->orderBy('value', 'desc')->skip(1)->take(1)->first()->country;
     }
     
     public function getCountryWithMinPopulationLastYear()
     {
-        return Population::orderBy('year', 'desc')->orderBy('value', 'asc')->first()->country;;
+        return Population::orderBy('year', 'desc')->orderBy('value', 'asc')->first()->country;
     }
 }
